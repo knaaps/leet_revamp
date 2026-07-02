@@ -1,0 +1,12 @@
+class Solution: # Approach: 0-1 BFS | Time = O(mn) = Space
+    def findSafeWalk(self, grid: List[List[int]], health: int) -> bool:
+        m, n = len(grid[0]), len(grid)
+        dist = [[0] * m for _ in range(n)]
+        dist[0][0] = health - grid[0][0]
+        q = deque([(dist[0][0], 0, 0)])
+        while q:
+            h, i, j = q.popleft()
+            for x, y in (i+1,j), (i-1,j), (i,j+1), (i,j-1):
+                if 0 <= x < n and 0 <= y < m and (t := h - grid[x][y]) > dist[x][y]:
+                    dist[x][y] = t; (q.appendleft if t == h else q.append) ((t,x,y))
+        return dist[-1][-1] > 0
