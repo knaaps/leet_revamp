@@ -1,0 +1,50 @@
+class Solution:
+    def pathsWithMaxScore(self, board: List[str]) -> List[int]:
+        N = len(board)
+        MOD = 10 ** 9 + 7
+
+        board = [[c for c in row] for row in board]
+        for row in range(N):
+            for col in range(N):
+                if board[row][col] in {'S', 'E'}:
+                    board[row][col] = 0
+                elif board[row][col] == 'X':
+                    board[row][col] = float('-inf')
+                else:
+                    board[row][col] = int(board[row][col])
+
+        # max total upto here, number of ways to reach that max
+        dp = [[[float('-inf'), 0] for _ in range(N + 1)] for _ in range(N + 1)]
+        dp[1][1] = [0, 1]
+
+        for row in range(1, N + 1):
+            for col in range(1, N + 1):
+                if row == col == 1:
+                    continue
+
+                cell_value = board[row - 1][col - 1]
+                if cell_value == float('-inf'):
+                    dp[row][col] = [float('-inf'), 0]
+                    continue
+
+                top = dp[row - 1][col]
+                left = dp[row][col - 1]
+                diag = dp[row - 1][col - 1]
+
+                max_val = max(top[0], left[0], diag[0])
+                if max_val == float('-inf'):
+                    dp[row][col] = [float('-inf'), 0]
+                    continue
+
+                possible_ways = 0
+                for score, ways in (top, left, diag):
+                    if score == max_val:
+                        possible_ways += ways
+
+                dp[row][col][0] = max_val + cell_value
+                dp[row][col][1] = possible_ways % MOD
+
+        best_score, best_ways = dp[N][N]
+        if best_score == float('-inf'):
+            return [0, 0]
+        return [best_score, best_ways % MOD]
