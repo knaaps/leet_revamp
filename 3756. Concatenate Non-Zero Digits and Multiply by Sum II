@@ -1,0 +1,30 @@
+class Solution:
+    def sumAndMultiply(self, s: str, queries: List[List[int]]) -> List[int]:
+        MOD = 10**9+7
+        answer = []
+        prefix_sum = [0]
+        prefix_x = [0]
+        digit_count = [0]
+        for idx,char in enumerate(s):
+            digit = int(char)
+            prefix_sum.append(prefix_sum[-1]+digit)
+            x = prefix_x[-1] if digit==0 else (prefix_x[-1]*10 + digit)%MOD
+            prefix_x.append(x)
+            digit_count.append(digit_count[-1]+(digit>0))
+        
+        pow10 = [1] * (digit_count[-1] + 1)
+        for i in range(1, len(pow10)):
+            pow10[i] = (pow10[i - 1] * 10) % MOD
+
+        for q in queries:
+            l, r = q[0], q[1]+1
+
+            length = digit_count[r] - digit_count[l]
+            x = (prefix_x[r]-prefix_x[l] * pow10[length]) % MOD
+
+            sum_x = prefix_sum[r]-prefix_sum[l]
+
+            ans = (x*sum_x)%MOD
+            answer.append(ans) 
+        
+        return answer
