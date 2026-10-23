@@ -1,0 +1,8 @@
+class Solution:
+    def missingNumber(self, nums: list[int]) -> int:
+        n=max(nums)+1
+        l=len(nums)
+        if l==n:
+            return l
+        else:
+            return int((((n-1)*(n))/2) - sum(nums))
