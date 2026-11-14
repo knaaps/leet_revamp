@@ -1,0 +1,16 @@
+class Solution:
+    def longestMonotonicSubarray(self, nums: List[int]) -> int:
+        sisa=sdsa=best=1
+        for i in range(0,len(nums)-1):
+            a=nums[i]
+            b=nums[i+1]
+            if a<b:
+                sisa+=1
+                sdsa=1
+            if a>b:
+                sdsa+=1
+                sisa=1
+            if a==b:
+                sdsa=sisa=1
+            best=max(best,sisa,sdsa)
+        return best
