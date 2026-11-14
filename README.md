@@ -1,13 +1,15 @@
 # knaaps
 
-LeetCode solutions in Python.
+# LeetCode Solutions in Python
 
-A personal collection of Python solutions to LeetCode problems, useful for algorithm practice, data structures review, and coding interview preparation. Problems are listed by LeetCode number.
+A personal collection of Python solutions to LeetCode problems, useful for algorithm practice, data structures review, and coding interview preparation.
+
+Problems are listed by LeetCode number.
 
 ## Problems
 
 | # | Problem |
-|---|---------|
+|---:|---|
 | 217 | Contains Duplicate |
 | 486 | Predict the Winner |
 | 956 | Tallest Billboard |
@@ -21,8 +23,10 @@ A personal collection of Python solutions to LeetCode problems, useful for algor
 | 2492 | Minimum Score of a Path Between Two Cities |
 | 2685 | Count the Number of Complete Components |
 | 2812 | Find the Safest Path in a Grid |
+| 3105 | Longest Strictly Increasing or Strictly Decreasing Subarray |
 | 3286 | Find a Safe Walk Through a Grid |
 | 3336 | Find the Number of Subsequences With Equal GCD |
+| 3364 | Minimum Positive Sum Subarray |
 | 3499 | Maximize Active Section with Trade I |
 | 3534 | Path Existence Queries in a Graph II |
 | 3754 | Concatenate Non-Zero Digits and Multiply by Sum I |
