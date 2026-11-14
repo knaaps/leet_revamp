@@ -1,0 +1,19 @@
+class Solution:
+    def minimumSumSubarray(self, nums: List[int], l: int, r: int) -> int:
+        minsum = math.inf
+        length = len(nums)
+
+        for n in range(l, min(r, length) + 1):
+
+            window_sum = sum(nums[i] for i in range(n))
+
+            if window_sum > 0:
+                minsum = min(minsum, window_sum)
+
+            for i in range(n, length):
+                window_sum += nums[i] - nums[i-n]
+
+                if window_sum > 0:
+                    minsum = min(minsum, window_sum)
+
+        return -1 if minsum == math.inf else minsum
