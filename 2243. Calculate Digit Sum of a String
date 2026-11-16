@@ -1,0 +1,8 @@
+class Solution:
+    def digitSum(self, s: str, k: int) -> str:
+        while len(s)>k:
+            split=[s[i:i+k] for i in range(0, len(s), k)]
+            for i in range(len(split)):
+                split[i]= str(sum([int(x) for x in split[i]]))
+            s="".join(split)
+        return s
